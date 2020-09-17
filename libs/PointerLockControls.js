@@ -2,10 +2,8 @@
  * @author mrdoob / http://mrdoob.com/
  * @author schteppe / https://github.com/schteppe
  */
-
  
  var PointerLockControls = function ( camera, cannonBody, playerDummy ) {
-
 	var prevTime = performance.now();
     var eyeYPos = 2; // eyes are 2 meters above the ground
     var velocityFactor = 0.2;
@@ -53,7 +51,6 @@
 
     var velocity = cannonBody.position;
 	var realVelocity = cannonBody.velocity;
-
     var PI_2 = Math.PI / 2;
 
     var onMouseMove = function ( event ) {
@@ -63,25 +60,21 @@
         var movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
         var movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
 
-		if(gameplayCamera){
+		if (gameplayCamera){
         yawObject.rotation.y -= movementX * mouseSpeed;
         pitchObject.rotation.x -= movementY * mouseSpeed;
-
         pitchObject.rotation.x = Math.max( - PI_2, Math.min( PI_2, pitchObject.rotation.x ) );
-		}else{
+		} 
+		else {
 			
 			yawObject.rotation.y -= movementX * mouseSpeed;
 			pitchObject.rotation.x -= movementY * mouseSpeed;
 			pitchObject.rotation.x = Math.max( - PI_2, Math.min( PI_2, pitchObject.rotation.x ) );
-			
-		}
-		
+		}	
     };
 	
 	var onKeyDown = function ( event ) {
-
         switch ( event.keyCode ) {
-
             case 38: // up
             case 87: // w
                 moveForward = true;
@@ -165,13 +158,10 @@
 				
 			case 37: //left
 				turnCameraLeft = false;
-
         }
 
     };
 	
-	
-
     document.addEventListener( 'mousemove', onMouseMove, false );
     document.addEventListener( 'keydown', onKeyDown, false );
     document.addEventListener( 'keyup', onKeyUp, false );
@@ -179,7 +169,6 @@
     this.enabled = false;
 
     this.getObject = function () {
-		
         return yawObject;
     };
 
@@ -187,19 +176,14 @@
         targetVec.set(0,0,-1);
         quat.multiplyVector3(targetVec);
     }
-
     // Moves the camera to the Cannon.js object position and adds velocity to the object if the run key is down
     var inputVelocity = new THREE.Vector3();
     var euler = new THREE.Euler();
     this.update = function ( delta ) {
-
         if ( scope.enabled === false ) return;
-
-		
 		var time = performance.now();
 		var delta = ( time - prevTime ) / 1000;
         //delta *= 0.1;
-
         inputVelocity.set(0,0,0);
 		
 		inputVelocity.z -= inputVelocity.z * 10.0 * delta;
@@ -229,8 +213,6 @@
             //inputVelocity.x = velocityFactor * delta;
         }
 		
-
-		
         // Convert velocity to world coordinates
         euler.x = pitchObject.rotation.x;
         euler.y = yawObject.rotation.y;
@@ -239,13 +221,9 @@
         inputVelocity.applyQuaternion(quat);
         //quat.multiplyVector3(inputVelocity);
 
-		
-		
         // Add to the object
         velocity.x += inputVelocity.x;
         velocity.z += inputVelocity.z;
-		
-		
 		
 		playerDummy.position.copy( cannonBody.position );
         yawObject.position.copy(cannonBody.position);
@@ -267,10 +245,7 @@
 		if(turnCameraLeft == true){
 			controls.getObject().rotation.y -= .01;
 		}
-		
-		}
-		
-		prevTime = time;
-		
+		 }
+		prevTime = time;		
     };
 };

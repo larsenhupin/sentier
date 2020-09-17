@@ -1,6 +1,4 @@
 function SceneEntities(){
-
-
 	var ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
 	scene.add(ambientLight);
 		
@@ -25,15 +23,9 @@ function SceneEntities(){
 	var sunGeometryWire = new THREE.SphereGeometry(30, 10, 10, 0);
 	var sunMaterialWire = new THREE.MeshBasicMaterial({color: 0x000000, wireframe: true });
 	var sunWire			= new THREE.Mesh(sunGeometryWire, sunMaterialWire);
-	//light.add(sunWire);
-
 
 	var floorGeometry = new THREE.PlaneGeometry(600, 1200, 1, 1);
-	var floorMaterial = new THREE.MeshLambertMaterial({	color: 0x8DDB7D/*0xBAFFA0*/      //0xE0FFD4
-														//emissive: 0xffffff,
-														//emissiveIntensity: 0
-														});
-
+	var floorMaterial = new THREE.MeshLambertMaterial({	color: 0x8DDB7D });
 	floor = new THREE.Mesh(floorGeometry, floorMaterial);
 	floor.receiveShadow = true;
 	scene.add(floor);
@@ -44,66 +36,48 @@ function SceneEntities(){
 
 	var playerDummyGeometry = new THREE.SphereGeometry(radius);
 	var playerDummyMaterial = new THREE.MeshLambertMaterial({color: 0x000000});
-		playerDummy			= new THREE.Mesh(playerDummyGeometry, playerDummyMaterial);
+	playerDummy = new THREE.Mesh(playerDummyGeometry, playerDummyMaterial);
 	scene.add(playerDummy);
-
 	playerDummy.add(topCamera);
-
-	var bushes00Geometry = new THREE.BoxGeometry(6, 6, 12);
-	var bushes00Material = new THREE.MeshBasicMaterial({color: 0x0000ff});
-	var bushes00		 = new THREE.Mesh(bushes00Geometry, bushes00Material);
-	scene.add(bushes00);
-	bushes00.position.set(318, 5, 230);
-
-	var papillon00Geometry = new THREE.BoxGeometry(1, 1, 1);
-	var papillon00Material = new THREE.MeshBasicMaterial({color: 0xFF0000});
-	var papillon00		   = new THREE.Mesh(papillon00Geometry, papillon00Material);
-	scene.add(papillon00);
-	papillon00.position.set(313, 5, 230);
 
 	var mesh01Geometry 	= new THREE.SphereGeometry(90, 32, 32, 0);
 	var mesh01Material 	= new THREE.MeshBasicMaterial({wireframe: true, color: 0xFF0000});
-	mesh01			= new THREE.Mesh(mesh01Geometry, mesh01Material);
+	mesh01 = new THREE.Mesh(mesh01Geometry, mesh01Material);
 	scene.add(mesh01);
 	mesh01.position.set(400, 30, 750);
 
 	var halfExtentsTrigger00 = new CANNON.Vec3(15,25,15);
 	var trigger00Shape = new CANNON.Box(halfExtentsTrigger00);
-		trigger00Body = new CANNON.Body({ mass: 0 });
+	trigger00Body = new CANNON.Body({ mass: 0 });
 	trigger00Body.addShape(trigger00Shape);
 	world.addBody(trigger00Body);
-
-
 
 	trigger00Body.position.set(305,-24,515);		
 
 	var trigger00Geometry = new THREE.BoxGeometry(30, 50, 30, 6, 6, 6);
 	var trigger00Material = new THREE.MeshLambertMaterial({color: 0xFF00FF, transparent: true, opacity: 1});
-		trigger00 		  = new THREE.Mesh(trigger00Geometry, trigger00Material);
+	trigger00 = new THREE.Mesh(trigger00Geometry, trigger00Material);
 	cubeBBox = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
 	scene.add(trigger00);
 	trigger00.position.set(305, -24, 515);
 
 	var trigger02Geometry = new THREE.BoxGeometry( 6, 30, 4, 1, 1 ); 
 	var trigger02Material = new THREE.MeshLambertMaterial({color: 0xFF00FF, transparent: true, opacity: 0.2});
-		trigger02 		  =	new THREE.Mesh(trigger02Geometry, trigger02Material);
-		AABBtrigger02 	  = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+	trigger02 		  =	new THREE.Mesh(trigger02Geometry, trigger02Material);
+	AABBtrigger02 	  = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
 	scene.add(trigger02);
 	trigger02.position.set(175, -16, 787.5);
 
 	var trigger03Geometry = new THREE.BoxGeometry( 40, 30, 4, 1, 1 );
 	var trigger03Material = new THREE.MeshLambertMaterial({color: 0xFF00FF, transparent: true, opacity: 0});
-		trigger03 		  =	new THREE.Mesh(trigger03Geometry, trigger03Material);
-		AABBtrigger03 	  = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
+	trigger03 		  =	new THREE.Mesh(trigger03Geometry, trigger03Material);
+	AABBtrigger03 	  = new THREE.Box3(new THREE.Vector3(), new THREE.Vector3());
 	scene.add(trigger03);
 	trigger03.position.set(117, 0, 787.5);
 	trigger03.rotation.x = - Math.PI;
 	trigger03.rotation.y = .5 * Math.PI;
 	trigger03.rotation.z =  Math.PI;
 
-
-
-	//SphereGeometry(radius, widthSegments, heightSegments, phiStart, phiLength, thetaStart, thetaLength)
 	var greatSphereGeometry = new THREE.SphereGeometry(75, 24, 24, 0);
 	var greatSphereMaterial = new THREE.MeshBasicMaterial({color: 0x0000FF, side: THREE.DoubleSide});
 	greatSphere 			= new THREE.Mesh(greatSphereGeometry, greatSphereMaterial);
@@ -116,7 +90,6 @@ function SceneEntities(){
 	scene.add(greatSphere2);
 	greatSphere2.position.set(112.5, 30, 787.5);
 
-
 	var greatSphereShape = new CANNON.Sphere(75);
 	greatSphereBody 	 = new CANNON.Body({ mass: 0 });
 	greatSphereBody.addShape(greatSphereShape);
@@ -128,8 +101,6 @@ function SceneEntities(){
 	var arc00		  = new THREE.Mesh(arc00Geometry, arc00Material);
 	scene.add(arc00);
 	arc00.position.set(377, 25, 400);
-
-
 
 	var halfExtents00 = new CANNON.Vec3(75,25,5);
 	var arc00Shape = new CANNON.Box(halfExtents00);
@@ -157,14 +128,9 @@ function SceneEntities(){
 	scene.add(arc02);
 	arc02.position.set(295, 32.5, 400);
 
-
-
 	var dotGeometry = new THREE.PlaneGeometry(.01, .01, 1, 1);
 	var dotMaterial = new THREE.MeshLambertMaterial({color: 0x000000});
 	var dot 		= new THREE.Mesh(dotGeometry, dotMaterial);
 	dot.position.set(0,0,-2);
 	camera.add(dot);
-
-
-
 }
