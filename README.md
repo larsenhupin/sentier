@@ -1,6 +1,6 @@
 # Sentier
 
-Sentier is a first-person exploration game prototype made in 2018.
+Sentier is a first-person exploration game prototype made in 2018. <br/>
 https://www.hackerspacecowboy.net/graphics/sentiers/code/index.html
 
 # Library
