@@ -1,6 +1,7 @@
 # Sentier
 
 Sentier is a first-person exploration game prototype made in 2018.
+https://www.hackerspacecowboy.net/graphics/sentiers/code/index.html
 
 # Library
 [Three.js](https://threejs.org/) (3D) <br/>
